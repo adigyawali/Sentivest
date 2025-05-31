@@ -1,0 +1,135 @@
+/* Global reset for box-sizing (optional but recommended) */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0; /* Basic reset for margins */
+    padding: 0; /* Basic reset for paddings */
+  }
+  
+  body, html, #root {
+    /* Ensure the app takes at least the full height if you want vertical centering options later */
+    min-height: 100vh;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #c9d4e0; /* Example background color */
+  }
+  
+  /* Header Styling */
+  .app-header {
+    display: flex;
+    justify-content: space-between; /* Space out logo area and auth area */
+    align-items: center;
+    padding: 15px 30px; /* Adjust padding as needed */
+    width: 100%; /* Make header span full width */
+  }
+  
+  .logo-area {
+    /* Flexbox will handle its sizing based on content */
+  }
+  
+  #homePageLogo { /* Your existing ID */
+    font-size: 1.8em; /* Adjust as needed */
+    margin-bottom: 0.2em; /* Space between title and subtitle */
+    color: #333;
+  }
+  
+  .auth-area { /* Or use #loginDiv if you prefer ID, but class is more flexible */
+    /* Flexbox will handle its sizing */
+  }
+  
+  #login { /* Your existing ID for the button */
+    padding: 8px 15px;
+    background-color: #3f87d5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  
+  #login:hover {
+    background-color: #0056b3;
+  }
+  
+  #titleMessage{
+    margin-bottom: 15px;
+    border: #333;
+    padding: 15px;
+  }
+  
+  #quantifyHeading{
+    font-size: 3em;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    opacity: 50%;
+  }
+  
+  #headingDescription{
+    font-size: 0.9em;
+    opacity: 50%;
+  }
+  /* Main Content Area Styling (for the search bar) */
+  .content-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+    min-height: 60vh; 
+  }
+  
+  /* Area Above search Bar*/
+  #message { /* Your existing ID */
+    font-size: 1em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    opacity: 80%;
+    color: #5c5252;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+    margin: -10px;
+  
+  }
+  
+  
+  .search-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* ADDED THIS LINE */
+    align-items: center; /* ADDED THIS LINE to center horizontally */
+    gap: 15px; /* ADDED THIS LINE for spacing between elements */
+    background-color: #ffffff78; /* Added some styling for the form itself */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    opacity: 90%;
+    max-width: 600px;
+  }
+  
+  #inputDiv { /* Your existing ID for the input's parent div */
+     width: 80%; /* Input div takes 80% of the form's width */
+     max-width: 500px; /* But not too wide on large screens */
+  }
+  
+  .search-input { /* Class for the input field itself */
+    width: 100%; /* Input takes full width of its parent #inputDiv */
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Rounded corners */
+    font-size: 1em;
+    text-align: center; /* Center placeholder text */
+  }
+  
+  /* Only for the placeholder section*/
+  .search-input::placeholder {
+    /* Use RGBA for color to specify both color and alpha (transparency) */
+    color: rgba(150, 150, 150, 0.6);
+  }
+  
+  /* --- Your existing :focus styling --- */
+  .search-input:focus {
+      outline: #8995a3;
+      border-color: #6a8bae;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  }
+  
