@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./login.css";
-import { Eye, EyeOff, LucideArrowUpRightFromSquare } from "lucide-react";
+import { Eye, EyeOff} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 

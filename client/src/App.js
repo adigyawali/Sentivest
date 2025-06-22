@@ -6,6 +6,8 @@ import Login from "./pages/Login/login";
 import Dashboard from "./pages/Dashboard/dashboard";
 import Signup from "./pages/Login/signup";
 import "./index.css";
+import { Menu } from "lucide-react"; 
+import "./Sidebar.css";
 
 function AppContent() {
     const location = useLocation();
