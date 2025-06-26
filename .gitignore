@@ -16,6 +16,8 @@ venv/
 
 # SQLite databases
 *.sqlite3
+*.sql
+*.db
 
 # OS files
 Thumbs.db
