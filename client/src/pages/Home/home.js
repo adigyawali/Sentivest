@@ -17,8 +17,6 @@ function App() {
     const [hasSearched, setHasSearched] = useState(false);
 
 
-
-
     // Once submitted
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent form from reloading the page

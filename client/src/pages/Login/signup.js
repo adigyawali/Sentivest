@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Eye, EyeOff} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import "./signup.css";
+import axios from "axios"
 
 function Signup() {
     const [username, setUsername] = useState("");
@@ -20,11 +21,23 @@ function Signup() {
         // Check all the conditons
         if (userNameGiven === true && passwordGiven === true && secondPasswordGiven === true && doPasswordMatch === true) {
             setAllowRedirectToLoginPage(true);
-            console.log(allowRedirectToLoginPage);
-            console.log("u signed in gang");
-            navigate("/login");
+            
+            axios
+                .post("http://127.0.0.1:5000/signup",
+                {
+                    username,
+                    password
+                })
+                .then(
+                    (response) => {console.log(response)
+                    // Navigate back to login after signup
+                    navigate("/login");
+                })
+                .catch((error) => {alert("Signup Failed")});
+
+            
         }
-    }
+    };
 
 
     //Webpage
