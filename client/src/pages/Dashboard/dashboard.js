@@ -1,6 +1,7 @@
 // pages/Dashboard/dashboard.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import "./dashboard.css";
 
 function Dashboard({ isLoggedIn, username }) {
@@ -8,14 +9,29 @@ function Dashboard({ isLoggedIn, username }) {
 
     // Redirect to login if not logged in
     React.useEffect(() => {
-        if (!isLoggedIn) {
+        const token = localStorage.getItem("token");
+        
+        // Send the user back immediatly if there isn't a token in local storage
+        if (!token || !isLoggedIn){
             navigate("/login");
+            return;
         }
+
+        axios.get("http://localhost:5000/dashboard", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        .then((res) => {
+            console.log(res.data.message);
+        })
+        .catch((err) => {
+            console.error(err);
+            navigate("/login"); // Token is invalid or expired
+        });
+
     }, [isLoggedIn, navigate]);
 
-    if (!isLoggedIn) {
-        return <div>Redirecting to login...</div>;
-    }
 
     return (
         <div className="dashboard-container">

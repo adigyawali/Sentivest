@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Eye, EyeOff} from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import "./signup.css";
 import axios from "axios"
@@ -13,29 +13,45 @@ function Signup() {
     const [secondPasswordGiven, setSecondPasswordGiven] = useState(false);
     const [doPasswordMatch, setDoPasswordMatch] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-    const [allowRedirectToLoginPage, setAllowRedirectToLoginPage] = useState(false)
+    const [errorMessage, setErrorMessage] = useState("");
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+
     const navigate = useNavigate();
 
     // Sign the user up
     const handleSignup = () => {
         // Check all the conditons
         if (userNameGiven === true && passwordGiven === true && secondPasswordGiven === true && doPasswordMatch === true) {
-            setAllowRedirectToLoginPage(true);
-            
+
             axios
                 .post("http://127.0.0.1:5000/signup",
-                {
-                    username,
-                    password
-                })
+                    {
+                        username,
+                        password
+                    })
                 .then(
-                    (response) => {console.log(response)
-                    // Navigate back to login after signup
-                    navigate("/login");
-                })
-                .catch((error) => {alert("Signup Failed")});
+                    (response) => {
+                            navigate("/login");
 
-            
+                    })
+
+                .catch((error) => {
+                    if (error.response) {
+                        // Backend responded with a non-2xx status
+                        if (error.response.status === 409) {
+                            setErrorMessage("Username Already Exists");
+                        } else {
+                            setErrorMessage("Signup failed. Please try again.");
+                        }
+                    } else {
+                        // No response at all (true network error)
+                        setErrorMessage("Network error occurred");
+                    }
+                    setShowErrorMessage(true);
+                });
+
+
         }
     };
 
@@ -110,6 +126,11 @@ function Signup() {
 
                         <p id="passwordError">Error, Passwords do not Match</p>
 
+                    )}
+
+                    {/* Show error message*/}
+                    {showErrorMessage && (
+                        <p id="signupErrorMessage">{errorMessage}</p>
                     )}
 
                     <button className="signupButton" onClick={handleSignup}>Signup</button>

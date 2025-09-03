@@ -11,6 +11,7 @@ function Login({ onLogin }) {
     const [password, setPassword] = useState("");
     const [passwordGiven, setPasswordGiven] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [invalidLogin, setInvalidLogin] = useState(false);
     const navigate = useNavigate();
 
     // Log the user in
@@ -34,7 +35,7 @@ function Login({ onLogin }) {
 
                 })
                 .catch((err) => {
-                    alert("Login failed: " + err.response?.data?.message || "Unknown error");
+                    setInvalidLogin(true);
                 });
 
             onLogin(username); // Call the parent function to update login state
@@ -82,6 +83,10 @@ function Login({ onLogin }) {
                     >
                         {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
+
+                {invalidLogin && (
+                    <p id = "invalidLogin">Username or Password is Incorrect</p>
+                )}    
                 </div>
 
                 <button onClick={handleLogin}>Login</button>

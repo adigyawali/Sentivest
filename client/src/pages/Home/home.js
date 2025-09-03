@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import "./home.css";
 
 
-
 function App() {
     const [ticker, setTicker] = useState("");
     const [showResults, setShowResults] = useState(false);

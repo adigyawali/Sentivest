@@ -82,3 +82,7 @@ button:hover {
     background: none;
     color: black; /* 👈 prevent it from turning white/blue */
 }
+
+#invalidLogin{
+    color: red;
+}
